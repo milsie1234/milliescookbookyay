@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Millie's Cookbook — Good food. Happy people.</title>
+<style>
+:root{--green:#155744;--green2:#2e7857;--cream:#fffaf0;--ink:#183d33;--muted:#61736b;--pale:#e0f0dc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--cream)}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5.5vw,82px);background:#fffdf8;gap:20px;position:sticky;top:0;z-index:5;box-shadow:0 2px 12px #123b2910}
+.brand{display:flex;align-items:center;gap:10px;color:var(--green);text-decoration:none;font-size:clamp(20px,2.3vw,29px);font-weight:850;letter-spacing:-1px}.hat{font-size:35px}.brand small{display:block;font-size:11px;letter-spacing:.3px;text-align:center;color:#315c4b;font-weight:600}
+nav{display:flex;gap:clamp(14px,3.5vw,48px)}nav a,footer a{color:inherit;text-decoration:none;font-weight:650;font-size:14px}nav a:hover,footer a:hover{color:#80b889}.header-actions{display:flex;gap:16px;font-size:22px}
+.hero{min-height:390px;display:flex;align-items:center;padding:48px clamp(24px,5.7vw,84px);color:white;background:linear-gradient(90deg,rgba(31,23,13,.88),rgba(31,23,13,.52) 43%,rgba(31,23,13,.02)),url('https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1800&q=85') center 52%/cover}
+.hero-content{max-width:510px}.hero h1{font-size:clamp(42px,5vw,64px);line-height:1.04;margin:0 0 16px;letter-spacing:-2px}.hero p{font-size:17px;line-height:1.6;max-width:420px;margin:0 0 22px}
+.search{display:flex;max-width:500px;background:white;border-radius:999px;padding:5px;box-shadow:0 8px 28px #0002}.search input{flex:1;min-width:0;border:0;background:transparent;padding:12px 16px;font-size:15px;outline:none;color:var(--ink)}button{cursor:pointer;border:0;font:inherit}.search button,.green-btn{background:var(--green2);color:white;border-radius:999px;padding:12px 23px;font-weight:750}.search button:hover,.green-btn:hover{background:#104c39}
+section{padding:28px clamp(22px,5.5vw,82px)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.section-head h2{font-size:clamp(24px,3vw,32px);letter-spacing:-.8px;margin:0}.text-link{color:var(--green2);font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}
+.categories{display:grid;grid-template-columns:repeat(7,minmax(70px,1fr));gap:16px}.category{border:0;background:transparent;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:9px;font-weight:650;padding:4px;border-radius:14px}.category:hover,.category.active{background:#e8f2e4}.category-icon{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;font-size:34px}.category:nth-child(1) .category-icon{background:#cce8c4}.category:nth-child(2) .category-icon{background:#ffd5c1}.category:nth-child(3) .category-icon{background:#ffe58d}.category:nth-child(4) .category-icon{background:#dfcdf3}.category:nth-child(5) .category-icon{background:#c9ead0}.category:nth-child(6) .category-icon{background:#bce4f1}.category:nth-child(7) .category-icon{background:#ffc7c4}
+.featured{background:#fff}.daily-recipe{background:linear-gradient(135deg,#f0f7e9,#fffaf0)}.daily-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:26px;align-items:center;background:#fff;border:1px solid #e1eadc;border-radius:18px;padding:18px;box-shadow:0 5px 18px #193b2710}.daily-card img{width:100%;height:270px;object-fit:cover;border-radius:12px}.daily-copy h3{font-size:clamp(23px,3vw,34px);margin:8px 0}.daily-copy p{line-height:1.6;color:var(--muted)}.daily-label{display:inline-block;background:#e0f0dc;color:#155744;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:800}.daily-card .meta{margin:12px 0}@media(max-width:650px){.daily-card{grid-template-columns:1fr}.daily-card img{height:210px}}.recipes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.recipe-card{border:1px solid #e5e8e2;border-radius:12px;overflow:hidden;background:white;box-shadow:0 3px 10px #193b2710;display:flex;flex-direction:column;min-width:0}.recipe-card img{width:100%;height:165px;object-fit:cover;background:#e8e8df}.recipe-info{padding:14px;display:flex;flex-direction:column;flex:1}.recipe-info h3{font-size:16px;margin:0 0 10px}.meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-bottom:13px}.recipe-info .green-btn{padding:10px 12px;font-size:13px;margin-top:auto}.empty{grid-column:1/-1;text-align:center;padding:36px;color:var(--muted)}
+.cta{margin:20px clamp(22px,5.5vw,82px) 16px;background:var(--pale);border-radius:18px;padding:25px;display:flex;justify-content:space-around;align-items:center;gap:18px;text-align:center;flex-wrap:wrap}.cta strong{font-size:clamp(21px,3vw,29px)}.cta .text-link{border-bottom:1px solid;padding-bottom:4px}
+footer{background:#174c3c;color:white;padding:24px clamp(22px,5.5vw,82px);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer-brand{font-weight:850;font-size:20px}footer nav{gap:24px}.socials{display:flex;gap:16px;font-weight:800}
+dialog{border:0;border-radius:18px;padding:0;max-width:540px;width:calc(100% - 32px);box-shadow:0 20px 80px #0005;color:var(--ink)}dialog::backdrop{background:#10291f99}.modal-img{width:100%;height:230px;object-fit:cover}.modal-body{padding:24px}.modal-body h2{margin:0 0 8px}.modal-body li{margin:6px 0}.close{float:right;background:#edf4ea;border-radius:50%;width:34px;height:34px;font-size:20px}
+
+.account-button{background:transparent;color:var(--green);border:1px solid #cbdcd0;border-radius:999px;padding:8px 13px;font-weight:700;font-size:13px}
+.newsletter{margin:22px clamp(22px,5.5vw,82px);padding:30px 24px;background:#f0e9d8;border-radius:18px;text-align:center}
+.newsletter h2{margin:0 0 8px;font-size:clamp(23px,3vw,30px)}.newsletter p{margin:0 auto 18px;max-width:570px;color:#5b6e64;line-height:1.55}
+.newsletter-form{display:flex;gap:8px;max-width:520px;margin:0 auto;justify-content:center}
+.newsletter-form input{flex:1;min-width:0;border:1px solid #d7ded4;border-radius:999px;background:white;padding:13px 16px;font:inherit}
+.status{font-size:13px;margin:12px auto 0;min-height:18px;color:var(--green);font-weight:650}
+dialog .field{display:block;width:100%;margin:8px 0 14px;padding:12px;border:1px solid #d7ded4;border-radius:10px;font:inherit}
+dialog .modal-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.dialog-note{font-size:12px;color:var(--muted);line-height:1.45}
+@media(max-width:560px){.newsletter-form{flex-direction:column}.newsletter-form button{width:100%}}
+
+@media(max-width:850px){.categories{grid-template-columns:repeat(4,1fr)}.recipes{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:360px}nav{gap:15px}}
+@media(max-width:560px){header{height:auto;min-height:68px;padding:12px 18px;flex-wrap:wrap}.brand{font-size:21px}.brand small{font-size:9px}.hat{font-size:29px}header nav{order:3;width:100%;justify-content:center;padding:8px 0 2px}header nav a{font-size:13px}.header-actions{margin-left:auto}.hero{padding:38px 22px;min-height:390px;background-position:58% center}.hero h1{font-size:44px}.hero p{font-size:15px}.categories{grid-template-columns:repeat(3,1fr);gap:10px}.category-icon{width:64px;height:64px;font-size:28px}.recipes{gap:12px}.recipe-card img{height:130px}.recipe-info{padding:11px}.recipe-info h3{font-size:14px}.meta{gap:7px;font-size:11px}.section-head{align-items:flex-start}.cta{margin-left:16px;margin-right:16px}footer{justify-content:center;text-align:center}footer nav{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#" aria-label="Millie's Cookbook home"><span class="hat">♨</span><span>Millie's Cookbook<small>Good food. Happy people.</small></span></a>
+  <nav aria-label="Main navigation"><a href="#">Home</a><a href="#recipes">Recipes</a><a href="#categories">Learn</a><a href="#about">About</a></nav>
+  <div class="header-actions"><a href="#search" aria-label="Search" style="text-decoration:none;color:inherit">⌕</a><button class="account-button" id="openLogin">Log in</button></div>
+</header>
+<main>
+<section class="hero">
+  <div class="hero-content"><h1>Cook, Create,<br>Enjoy! ♡</h1><p>Discover easy, tasty recipes, cooking tips and more. Whether you're a beginner or a pro, there's something here for you!</p>
+  <form class="search" id="search"><input id="searchInput" aria-label="Search recipes" placeholder="Search saved recipes..."><button type="submit">Search</button></form>
+  <form class="search online-search" id="onlineSearch" style="margin-top:12px;background:#fffdf0" aria-label="Search recipes online"><input id="onlineInput" aria-label="Describe the recipe you want" placeholder="Try “easy veggie dinner under 30 mins”"><button type="submit">Find online ↗</button></form>
+  <p style="font-size:12px;margin:8px 0 0;opacity:.9">Search the web for recipes matching your idea.</p></div>
+</section>
+<section id="categories">
+  <div class="section-head"><h2>Browse by Category</h2><a class="text-link" href="#recipes" id="allRecipes">View all recipes →</a></div>
+  <div class="categories">
+    <button class="category" data-category="Breakfast"><span class="category-icon">🥣</span>Breakfast</button>
+    <button class="category" data-category="Lunch"><span class="category-icon">🥪</span>Lunch</button>
+    <button class="category" data-category="Dinner"><span class="category-icon">🍲</span>Dinner</button>
+    <button class="category" data-category="Baking"><span class="category-icon">🧁</span>Baking</button>
+    <button class="category" data-category="Vegetarian"><span class="category-icon">🥬</span>Vegetarian</button>
+    <button class="category" data-category="World Cuisine"><span class="category-icon">🌎</span>World Cuisine</button>
+    <button class="category" data-category="Snacks & Treats"><span class="category-icon">🍪</span>Snacks & Treats</button>
+  </div>
+</section>
+<section class="daily-recipe" id="recipe-of-the-day">
+  <div class="section-head"><h2>✨ Recipe of the Day</h2><span id="dailyDate" style="color:var(--muted);font-size:13px"></span></div>
+  <article class="daily-card" id="dailyRecipeCard" aria-live="polite"></article>
+</section>
+<section class="featured" id="recipes">
+  <div class="section-head"><h2>Featured Recipes</h2><span id="resultCount" style="color:var(--muted);font-size:13px"></span></div>
+  <div class="recipes" id="recipeGrid"></div>
+</section>
+<section class="cta" id="about"><span style="font-size:42px">👩‍🍳</span><strong>Make something delicious today!</strong><a class="text-link" href="#recipes" id="explore">Explore all recipes →</a></section>
+</main>
+<section class="newsletter" id="newsletter">
+  <h2>Fresh recipes in your inbox 💌</h2>
+  <p>Sign up for new recipe ideas, simple cooking tips and a little inspiration for your next meal.</p>
+  <form class="newsletter-form" id="newsletterForm">
+    <input id="newsletterEmail" type="email" placeholder="Your email address" aria-label="Your email address" required>
+    <button class="green-btn" type="submit">Subscribe</button>
+  </form>
+  <div class="status" id="newsletterStatus" aria-live="polite"></div>
+  <p class="dialog-note">Demo sign-up only: this page doesn't send or store email addresses. Connect a newsletter service to collect real subscriptions.</p>
+</section>
+<footer><div class="footer-brand">♨ Millie's Cookbook</div><nav><a href="#">Home</a><a href="#recipes">Recipes</a><a href="#categories">Learn</a><a href="#about">About</a></nav><div class="socials" aria-label="Social links"><span>◎</span><span>ℙ</span><span>▶</span><span>f</span></div></footer>
+<dialog id="recipeDialog"><img class="modal-img" id="modalImg" alt=""><div class="modal-body"><button class="close" id="closeDialog" aria-label="Close">×</button><h2 id="modalTitle"></h2><p id="modalMeta" style="color:var(--muted)"></p><p id="modalDesc"></p><h3>Ingredients</h3><ul id="modalIngredients"></ul><h3>Quick method</h3><ol id="modalSteps"></ol></div></dialog>
+<dialog id="loginDialog">
+  <div class="modal-body">
+    <button class="close" id="closeLogin" aria-label="Close">×</button>
+    <h2 id="loginHeading">Welcome back! 👋</h2>
+    <p id="loginIntro">Log in to your Millie's Cookbook account.</p>
+    <form id="loginForm">
+      <label for="loginEmail">Email address</label>
+      <input class="field" id="loginEmail" type="email" placeholder="you@example.com" required>
+      <label for="loginPassword">Password</label>
+      <input class="field" id="loginPassword" type="password" minlength="6" placeholder="At least 6 characters" required>
+      <button class="green-btn" style="width:100%" type="submit" id="loginSubmit">Log in</button>
+    </form>
+    <p class="status" id="loginStatus" aria-live="polite"></p>
+    <p class="dialog-note">This is a front-end demo only. It does not create a real account or securely authenticate users. Add an authentication service before using it with real accounts.</p>
+    <div class="modal-actions"><span id="togglePrompt">New here?</span><button class="account-button" id="toggleSignup" type="button">Create an account</button></div>
+  </div>
+</dialog>
+<script>
+const recipes=[
+ {name:"Creamy Pasta Carbonara",category:["Dinner","World Cuisine"],time:"25 mins",serves:"2 servings",emoji:"🍝",img:"https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=700&q=80",desc:"A comforting, creamy pasta dish with a little black pepper and plenty of flavour.",ingredients:["200g spaghetti","2 eggs","40g grated parmesan","Black pepper"],steps:["Cook the spaghetti in salted water.","Whisk eggs, parmesan and pepper in a bowl.","Toss drained pasta with the egg mixture off the heat, adding a splash of pasta water."]},
+ {name:"Fluffy Pancakes",category:["Breakfast","Baking"],time:"20 mins",serves:"4 servings",emoji:"🥞",img:"https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=700&q=80",desc:"Soft, golden pancakes that are perfect with fruit and a drizzle of syrup.",ingredients:["150g plain flour","1 egg","180ml milk","1 tsp baking powder"],steps:["Mix the flour and baking powder.","Whisk in the egg and milk until smooth.","Cook small ladles in a lightly greased pan until golden on both sides."]},
+ {name:"Quick Veggie Stir Fry",category:["Lunch","Dinner","Vegetarian","World Cuisine"],time:"15 mins",serves:"2 servings",emoji:"🥦",img:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=700&q=80",desc:"Colourful crunchy vegetables in a quick, savoury sauce. Easy to customise.",ingredients:["Mixed vegetables","1 tbsp soy sauce","1 garlic clove","Cooked rice or noodles"],steps:["Slice the vegetables and chop the garlic.","Stir-fry in a hot pan for 5–7 minutes.","Add soy sauce and serve with rice or noodles."]},
+ {name:"Classic Chocolate Chip Cookies",category:["Baking","Snacks & Treats"],time:"30 mins",serves:"12 cookies",emoji:"🍪",img:"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=80",desc:"Golden cookies with soft centres and lots of chocolate chips.",ingredients:["125g butter","100g sugar","1 egg","180g flour","100g chocolate chips"],steps:["Cream the butter and sugar, then mix in the egg.","Stir in flour and chocolate chips.","Spoon onto a tray and bake at 180°C for 10–12 minutes."]},
+ {name:"Rainbow Breakfast Bowl",category:["Breakfast","Vegetarian"],time:"10 mins",serves:"1 serving",emoji:"🍓",img:"https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=700&q=80",desc:"A fresh fruit and yoghurt bowl to brighten your morning.",ingredients:["Yoghurt","Granola","Fresh berries","Banana"],steps:["Spoon yoghurt into a bowl.","Top with sliced banana, berries and granola.","Enjoy straight away."]},
+ {name:"Cheesy Toastie",category:["Lunch","Snacks & Treats"],time:"10 mins",serves:"1 serving",emoji:"🥪",img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=700&q=80",desc:"A crispy golden toastie with melty cheese.",ingredients:["2 slices bread","Cheddar cheese","A little butter"],steps:["Butter the outside of the bread.","Add cheese between the slices.","Toast in a pan until golden and melted."]},
+ {name:"Creamy Tomato Soup",category:["Lunch","Vegetarian"],time:"25 mins",serves:"2 servings",emoji:"🍅",img:"https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=700&q=80",desc:"A cosy tomato soup with a smooth texture and fresh herbs.",ingredients:["1 tin chopped tomatoes","1 small onion","300ml vegetable stock","A splash of cream (optional)"],steps:["Soften chopped onion in a saucepan.","Add tomatoes and stock, then simmer for 15 minutes.","Blend carefully until smooth and stir in cream if you like."]},
+ {name:"Lemon Garlic Roast Chicken",category:["Dinner"],time:"55 mins",serves:"4 servings",emoji:"🍗",img:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=80",desc:"A bright, herby roast chicken dinner with lemon and garlic.",ingredients:["4 chicken thighs","1 lemon","3 garlic cloves","Olive oil and mixed herbs"],steps:["Heat oven to 200°C.","Rub chicken with oil, lemon, garlic and herbs.","Roast until cooked through and the thickest part reaches 75°C."]},
+ {name:"Avocado Egg Toast",category:["Breakfast","Lunch","Vegetarian"],time:"10 mins",serves:"1 serving",emoji:"🥑",img:"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80",desc:"Crunchy toast topped with creamy avocado and a softly cooked egg.",ingredients:["2 slices bread","1 ripe avocado","1 egg","Lemon juice, salt and pepper"],steps:["Toast the bread.","Mash avocado with lemon juice and seasoning.","Cook the egg to your liking and pile everything onto the toast."]},
+ {name:"Berry Smoothie",category:["Breakfast","Snacks & Treats","Vegetarian"],time:"5 mins",serves:"1 serving",emoji:"🫐",img:"https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=700&q=80",desc:"A quick fruity smoothie for breakfast or an afternoon pick-me-up.",ingredients:["1 banana","150g mixed berries","150ml milk or yoghurt","A few ice cubes"],steps:["Add everything to a blender.","Blend until smooth.","Pour into a glass and enjoy straight away."]},
+ {name:"Margherita Pizza",category:["Dinner","Lunch","Vegetarian","World Cuisine"],time:"30 mins",serves:"2 servings",emoji:"🍕",img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=700&q=80",desc:"A simple pizza topped with tomato, mozzarella and fresh basil.",ingredients:["1 pizza base","4 tbsp tomato passata","125g mozzarella","Fresh basil"],steps:["Heat oven to 220°C.","Spread passata over the base and add mozzarella.","Bake until crisp and golden, then finish with basil."]},
+ {name:"Banana Bread",category:["Baking","Breakfast"],time:"60 mins",serves:"8 slices",emoji:"🍌",img:"https://images.unsplash.com/photo-1606101273945-e9eba91c0f8a?auto=format&fit=crop&w=700&q=80",desc:"A soft, sweet loaf that makes great use of ripe bananas.",ingredients:["3 ripe bananas","200g plain flour","100g sugar","1 egg","75g melted butter"],steps:["Heat oven to 180°C and mash the bananas.","Mix with egg, sugar and melted butter, then fold in flour.","Bake in a lined loaf tin for about 45–50 minutes, until a skewer comes out clean."]},
+ {name:"Crispy Potato Wedges",category:["Snacks & Treats","Vegetarian"],time:"35 mins",serves:"3 servings",emoji:"🥔",img:"https://images.unsplash.com/photo-1518013431117-eb1465fa5752?auto=format&fit=crop&w=700&q=80",desc:"Golden oven-baked wedges with paprika and herbs.",ingredients:["4 medium potatoes","1 tbsp olive oil","1 tsp paprika","Salt and pepper"],steps:["Heat oven to 220°C.","Cut potatoes into wedges and toss with oil and seasoning.","Bake on a tray for 30–35 minutes, turning halfway."]},
+ {name:"Chickpea Curry",category:["Dinner","Vegetarian","World Cuisine"],time:"25 mins",serves:"3 servings",emoji:"🍛",img:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=700&q=80",desc:"A warming chickpea curry with tomatoes and fragrant spices.",ingredients:["1 tin chickpeas, drained","1 tin chopped tomatoes","1 onion","2 tsp curry powder","Rice to serve"],steps:["Cook the chopped onion until soft.","Stir in curry powder, tomatoes and chickpeas.","Simmer for 15–20 minutes and serve with rice."]},
+ {name:"Apple Cinnamon Muffins",category:["Baking","Snacks & Treats"],time:"30 mins",serves:"10 muffins",emoji:"🧁",img:"https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=700&q=80",desc:"Tender muffins with juicy apple pieces and cosy cinnamon.",ingredients:["200g plain flour","2 apples, diced","80g sugar","1 egg","150ml milk","1 tsp cinnamon"],steps:["Heat oven to 180°C and line a muffin tray.","Mix dry ingredients, then stir in egg, milk and apple.","Divide into cases and bake for 18–22 minutes."]},
+ {name:"Greek-Style Salad",category:["Lunch","Vegetarian","World Cuisine"],time:"12 mins",serves:"2 servings",emoji:"🥗",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=700&q=80",desc:"A fresh, crunchy salad with cucumber, tomatoes, olives and feta.",ingredients:["Cucumber","2 tomatoes","A handful of olives","Feta cheese","Olive oil and lemon"],steps:["Chop the cucumber and tomatoes.","Add olives and crumbled feta.","Dress with olive oil and lemon, then toss gently."]},
+ {name:"Chocolate Mug Cake",category:["Baking","Snacks & Treats"],time:"6 mins",serves:"1 serving",emoji:"🍫",img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80",desc:"A quick chocolate treat made in a mug in just a few minutes.",ingredients:["4 tbsp plain flour","2 tbsp cocoa powder","2 tbsp sugar","3 tbsp milk","1 tbsp oil"],steps:["Mix all ingredients in a large microwave-safe mug.","Microwave for 60–90 seconds until just set.","Let it cool briefly before eating."]}
+
+];
+// Expand the catalogue to 1,000 searchable recipe ideas.
+// These extra entries are generated combinations, not independently verified
+// recipes gathered from external websites.
+const extraBases = [
+"pasta","noodle bowl","rice bowl","soup","salad","wrap","toastie","flatbread","pizza","curry",
+"baked potato","grain bowl","risotto","tacos","quesadilla","frittata","omelette","pancakes","waffles","muffins",
+"cookies","traybake","brownies","crumble","fruit bowl","smoothie","milkshake","overnight oats","porridge","granola",
+"roast vegetables","stir fry","dumplings","fried rice","lentil stew","chickpea bowl","bean chilli","burger","veggie burger","meatballs",
+"baked fish","fish cakes","chicken traybake","tofu bowl","stuffed peppers","stuffed mushrooms","mac and cheese","baked gnocchi","lasagne","couscous bowl",
+"pita pockets","spring rolls","savoury muffins","scones","flatbread pizza","pasta bake","potato salad","slaw","dipping sauce","hummus",
+"energy bites","fruit pops","ice cream sundae","yoghurt parfait","cheesecake cups","lemon cake","banana loaf","apple muffins","chocolate tart","jam bars",
+"pesto pasta","tomato pasta","garlic bread","bean soup","minestrone","pumpkin soup","sweet potato wedges","corn fritters","vegetable kebabs","halloumi skewers",
+"breakfast burrito","egg muffins","savoury oats","baked eggs","shakshuka","lentil salad","quinoa bowl","barley bowl","roasted cauliflower","broccoli bake",
+"mushroom toast","spinach pie","cheese twists","herb biscuits","chocolate truffles","rice pudding","bread pudding","berry compote","fruit crumble","carrot cake"
+];
+const extraStyles = ["Easy","Quick","Creamy","Crispy","Zesty","Herby","Smoky","Golden","Spicy","Fresh","Garlic","Lemon","Tomato","Cheesy","Sweet Chilli","Mediterranean","Rustic","One-Pan","Weeknight","Colourful"];
+const extraCategories = [["Dinner"],["Lunch"],["Vegetarian"],["World Cuisine"],["Breakfast"],["Baking"],["Snacks & Treats"],["Dinner","Vegetarian"]];
+const extraImages = recipes.map(r=>r.img);
+const extraTime = ["10 mins","15 mins","20 mins","25 mins","30 mins","35 mins","40 mins"];
+for (const style of extraStyles) {
+  for (let i = 0; i < extraBases.length; i++) {
+    if (recipes.length >= 1000) break;
+    const base = extraBases[i];
+    const name = `${style} ${base.charAt(0).toUpperCase()}${base.slice(1)}`;
+    if (recipes.some(r => r.name.toLowerCase() === name.toLowerCase())) continue;
+    const category = extraCategories[(i + extraStyles.indexOf(style)) % extraCategories.length];
+    recipes.push({
+      name, category,
+      time: extraTime[(i + extraStyles.indexOf(style)) % extraTime.length],
+      serves: (i % 3 + 1) + " servings",
+      emoji: "🍽️",
+      img: extraImages[(i + extraStyles.indexOf(style)) % extraImages.length],
+      desc: `${style} ${base} idea for your next meal. Adjust ingredients and seasoning to suit your taste.`,
+      ingredients: ["Your chosen main ingredients", "1 tbsp olive oil or preferred cooking oil", "Herbs and seasoning to taste", "Optional toppings of your choice"],
+      steps: ["Prepare and chop the ingredients.", "Cook using a suitable method for the ingredients, adding seasoning to taste.", "Check everything is cooked safely, then serve."]
+    });
+  }
+}
+const grid=document.getElementById("recipeGrid"),input=document.getElementById("searchInput"),count=document.getElementById("resultCount");let activeCategory="";
+function renderRecipeOfTheDay(){
+ const now=new Date();
+ const dayNumber=Math.floor(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/86400000);
+ const r=recipes[((dayNumber%recipes.length)+recipes.length)%recipes.length];
+ document.getElementById("dailyDate").textContent=now.toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long"});
+ document.getElementById("dailyRecipeCard").innerHTML=`<img src="${r.img}" alt="${r.name}" loading="lazy"><div class="daily-copy"><span class="daily-label">TODAY'S PICK ${r.emoji}</span><h3>${r.name}</h3><div class="meta"><span>◷ ${r.time}</span><span>♙ ${r.serves}</span></div><p>${r.desc}</p><button class="green-btn" id="viewDailyRecipe" type="button">See ingredients & method →</button></div>`;
+ document.getElementById("viewDailyRecipe").addEventListener("click",()=>showRecipe(r.name));
+}
+function render(){let q=input.value.trim().toLowerCase();let filtered=recipes.filter(r=>(!activeCategory||r.category.includes(activeCategory))&&(!q||(r.name+" "+r.category.join(" ")).toLowerCase().includes(q)));count.textContent=filtered.length+" recipes";grid.innerHTML=filtered.length?filtered.map(r=>`<article class="recipe-card"><img src="${r.img}" alt="${r.name}" loading="lazy"><div class="recipe-info"><h3>${r.name}</h3><div class="meta"><span>◷ ${r.time}</span><span>♙ ${r.serves}</span></div><button class="green-btn" data-recipe="${r.name}">View Recipe →</button></div></article>`).join(""):'<div class="empty">No recipes found. Try another search or category! 🥕</div>';}
+function showRecipe(name){let r=recipes.find(x=>x.name===name);if(!r)return;document.getElementById("modalImg").src=r.img;document.getElementById("modalImg").alt=r.name;document.getElementById("modalTitle").textContent=r.name;document.getElementById("modalMeta").textContent=`${r.time} · ${r.serves} · ${r.category.join(", ")}`;document.getElementById("modalDesc").textContent=r.desc;document.getElementById("modalIngredients").innerHTML=r.ingredients.map(x=>`<li>${x}</li>`).join("");document.getElementById("modalSteps").innerHTML=r.steps.map(x=>`<li>${x}</li>`).join("");document.getElementById("recipeDialog").showModal();}
+document.getElementById("search").addEventListener("submit",e=>{e.preventDefault();activeCategory="";document.querySelectorAll(".category").forEach(b=>b.classList.remove("active"));render();document.getElementById("recipes").scrollIntoView({behavior:"smooth"});});
+document.getElementById("onlineSearch").addEventListener("submit",e=>{
+ e.preventDefault();
+ const raw=document.getElementById("onlineInput").value.trim();
+ if(!raw){document.getElementById("onlineInput").focus();return;}
+ // Turn a natural-language request into a recipe-focused web search.
+ const query = raw + " recipe ingredients method";
+ const url = "https://www.google.com/search?q=" + encodeURIComponent(query) + "&udm=14";
+ window.open(url,"_blank","noopener,noreferrer");
+});
+document.querySelectorAll(".category").forEach(b=>b.addEventListener("click",()=>{activeCategory=activeCategory===b.dataset.category?"":b.dataset.category;document.querySelectorAll(".category").forEach(x=>x.classList.toggle("active",x===b&&!!activeCategory));render();document.getElementById("recipes").scrollIntoView({behavior:"smooth"});}));
+document.getElementById("allRecipes").addEventListener("click",()=>{activeCategory="";input.value="";document.querySelectorAll(".category").forEach(b=>b.classList.remove("active"));render();});
+document.getElementById("explore").addEventListener("click",()=>{activeCategory="";input.value="";render();});
+grid.addEventListener("click",e=>{let b=e.target.closest("[data-recipe]");if(b)showRecipe(b.dataset.recipe);});document.getElementById("closeDialog").addEventListener("click",()=>document.getElementById("recipeDialog").close());document.getElementById("recipeDialog").addEventListener("click",e=>{if(e.target.id==="recipeDialog")e.target.close()});
+const loginDialog=document.getElementById("loginDialog");
+let signupMode=false;
+document.getElementById("openLogin").addEventListener("click",()=>{loginDialog.showModal();});
+document.getElementById("closeLogin").addEventListener("click",()=>loginDialog.close());
+loginDialog.addEventListener("click",e=>{if(e.target===loginDialog)loginDialog.close();});
+document.getElementById("toggleSignup").addEventListener("click",()=>{
+ signupMode=!signupMode;
+ document.getElementById("loginHeading").textContent=signupMode?"Join Millie's Cookbook 🌱":"Welcome back! 👋";
+ document.getElementById("loginIntro").textContent=signupMode?"Create your demo account details below.":"Log in to your Millie's Cookbook account.";
+ document.getElementById("loginSubmit").textContent=signupMode?"Create account":"Log in";
+ document.getElementById("togglePrompt").textContent=signupMode?"Already have an account?":"New here?";
+ document.getElementById("toggleSignup").textContent=signupMode?"Log in instead":"Create an account";
+ document.getElementById("loginStatus").textContent="";
+});
+document.getElementById("loginForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ document.getElementById("loginStatus").textContent=signupMode
+ ? "Demo only: connect authentication to create your account."
+ : "Demo only: connect authentication to log in securely.";
+});
+document.getElementById("newsletterForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const email=document.getElementById("newsletterEmail").value.trim();
+ if(!email)return;
+ document.getElementById("newsletterStatus").textContent="Thanks for your interest! This demo doesn't save subscriptions yet.";
+ document.getElementById("newsletterForm").reset();
+});
+renderRecipeOfTheDay();
+render();
+</script>
+</body>
+</html>
